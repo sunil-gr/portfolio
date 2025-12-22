@@ -175,7 +175,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen bg-blue-50 pt-20 pb-16 relative overflow-x-hidden">
+    <section id="home" className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 pt-16 sm:pt-20 pb-12 sm:pb-16 relative overflow-x-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-20 right-4 sm:right-10 opacity-10 hidden sm:block">
         <div className="w-32 h-32 sm:w-48 md:w-64 sm:h-48 md:h-64 border-2 border-dashed border-blue-400 rotate-45"></div>
@@ -184,14 +184,14 @@ const Hero = () => {
         <div className="w-24 h-24 sm:w-36 md:w-48 sm:h-36 md:h-48 border-2 border-dashed border-blue-400 rotate-45"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 pb-12">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-16 sm:pt-20 pb-8 sm:pb-12">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative z-10 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20"
+            className="relative z-10 order-2 md:order-1 px-2 sm:px-4 md:pl-8 lg:pl-12 xl:pl-16"
           >
             <motion.p
               initial={{ opacity: 0 }}
@@ -205,26 +205,26 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-blue-900 mb-3"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 bg-clip-text text-transparent mb-2 sm:mb-3 leading-tight"
             >
               {loading ? DEFAULT_HERO.name : heroContent.name || DEFAULT_HERO.name}
             </motion.h1>
 
-            <motion.h1
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-6xl font-bold text-blue-800 mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-700 mb-4 sm:mb-6 leading-tight"
             >
               {loading
                 ? DEFAULT_HERO.designation
                 : heroContent.designation || DEFAULT_HERO.designation}
-            </motion.h1>
+            </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-gray-600 text-base sm:text-lg mb-8 leading-relaxed text-justify max-w-xl"
+              className="text-gray-600 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 leading-relaxed text-left sm:text-justify max-w-xl"
             >
               {loading
                 ? 'With a passion for crafting clean, intuitive, and high-performing digital experiences, I develop both web and mobile applications that merge design and functionality seamlessly. From concept to deployment, I focus on creating interactive solutions that captivate users and make a lasting impression.'
@@ -267,7 +267,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 mb-8"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8"
             >
               <Link
                 to="#contact"
@@ -278,7 +278,7 @@ const Hero = () => {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="bg-blue-600 text-white px-6 md:px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex items-center text-sm sm:text-base"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 font-semibold flex items-center justify-center text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Let's Talk
                 <svg
@@ -299,7 +299,7 @@ const Hero = () => {
               <button
                 onClick={handleDownloadCV}
                 disabled={downloading}
-                className="bg-white text-gray-700 border-2 border-gray-300 px-6 md:px-8 py-3 rounded-lg hover:border-blue-600 hover:text-blue-600 transition-colors duration-200 font-medium flex items-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                className="bg-white text-gray-700 border-2 border-gray-300 px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl hover:border-blue-600 hover:text-blue-600 transition-all duration-300 font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
               >
                 {downloading ? (
                   <>
@@ -320,18 +320,18 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="flex items-center"
+              className="flex items-center mt-4 sm:mt-6"
             >
-              <div className="bg-white p-3 rounded-lg shadow-md flex items-center space-x-6">
+              <div className="bg-white p-3 sm:p-4 rounded-xl shadow-lg flex items-center space-x-4 sm:space-x-6 border border-gray-100">
                 {heroContent.linkedinUrl && (
                   <a
                     href={heroContent.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-700 hover:text-blue-800 transition-colors"
+                    className="text-blue-700 hover:text-blue-800 transition-all duration-300 hover:scale-110"
                     aria-label="LinkedIn"
                   >
-                    <Linkedin size={20} />
+                    <Linkedin size={22} className="sm:w-6 sm:h-6" />
                   </a>
                 )}
                 {heroContent.githubUrl && (
@@ -339,10 +339,10 @@ const Hero = () => {
                     href={heroContent.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-800 hover:text-gray-900 transition-colors"
+                    className="text-gray-800 hover:text-gray-900 transition-all duration-300 hover:scale-110"
                     aria-label="GitHub"
                   >
-                    <Github size={20} />
+                    <Github size={22} className="sm:w-6 sm:h-6" />
                   </a>
                 )}
               </div>
@@ -354,9 +354,9 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative z-10"
+            className="relative z-10 order-1 md:order-2"
           >
-            <div className="relative max-w-sm lg:max-w-md mx-auto pr-4 sm:pr-6 md:pr-8 lg:pr-12">
+            <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto px-4 sm:px-6 md:px-8">
               <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-blue-200 blur-3xl opacity-60"></div>
               <div className="absolute -bottom-6 -left-4 w-20 h-20 rounded-full bg-purple-200 blur-3xl opacity-70"></div>
               {/* Dynamic Portrait Image - Fetched from Database */}
@@ -370,7 +370,7 @@ const Hero = () => {
                   <img
                     src={heroContent.image}
                     alt={heroContent.name || 'Portrait'}
-                    className="w-full h-[320px] sm:h-[400px] md:h-[480px] lg:h-[520px] object-cover object-top"
+                    className="w-full h-[280px] sm:h-[360px] md:h-[450px] lg:h-[500px] xl:h-[550px] object-cover object-top rounded-2xl"
                     loading="lazy"
                     onError={e => {
                       console.error('Error loading hero image:', heroContent.image);
@@ -393,7 +393,7 @@ const Hero = () => {
                   transition={{ delay: 0.7 }}
                   className="relative rounded-2xl overflow-hidden shadow-2xl"
                 >
-                  <div className="h-[320px] sm:h-[400px] md:h-[480px] lg:h-[520px] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                  <div className="h-[280px] sm:h-[360px] md:h-[450px] lg:h-[500px] xl:h-[550px] bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200 flex items-center justify-center rounded-2xl">
                     <div className="text-center px-6">
                       <div className="w-28 h-28 bg-blue-300 rounded-full mx-auto mb-4 flex items-center justify-center">
                         <span className="text-4xl text-blue-700">👨‍💼</span>

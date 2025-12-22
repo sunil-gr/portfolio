@@ -35,22 +35,22 @@ const Education = () => {
     : [];
 
   return (
-    <section id="education" className="py-12 sm:py-16 md:py-20 bg-white">
+    <section id="education" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto bg-white rounded-[32px] border border-gray-200 shadow-xl overflow-hidden"
+          className="max-w-6xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-gray-200 shadow-xl overflow-hidden"
         >
           <div className="grid md:grid-cols-[1.4fr_2fr]">
             {/* Left column */}
-            <div className="bg-gradient-to-br from-white via-blue-50/60 to-white p-6 sm:p-8 md:p-10 border-r border-gray-100">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
+            <div className="bg-gradient-to-br from-white via-blue-50/60 to-white p-5 sm:p-6 md:p-8 lg:p-10 border-r border-gray-100">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-800 to-gray-700 bg-clip-text text-transparent">
                 {loading ? 'Education' : educationContent.sectionTitle || 'Education'}
               </h2>
-              <p className="text-gray-600 text-base sm:text-lg mt-4 leading-relaxed">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mt-3 sm:mt-4 leading-relaxed">
                 {loading
                   ? 'All my life I have been driven by my strong belief that education is important. I try to learn something new every single day.'
                   : educationContent.sectionDescription ||
@@ -59,8 +59,8 @@ const Education = () => {
             </div>
 
             {/* Right column */}
-            <div className="relative bg-white p-6 sm:p-8 md:p-10">
-              <div className="absolute left-6 sm:left-8 top-8 bottom-8 border-l-2 border-blue-100"></div>
+            <div className="relative bg-white p-5 sm:p-6 md:p-8 lg:p-10">
+              <div className="absolute left-4 sm:left-6 md:left-8 top-6 sm:top-8 bottom-6 sm:bottom-8 border-l-2 border-blue-100"></div>
 
               {loading ? (
                 <div className="space-y-6">

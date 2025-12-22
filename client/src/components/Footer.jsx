@@ -5,9 +5,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-800 text-white py-12">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-10 sm:py-12 md:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* About Section */}
           <div>
             <div className="flex items-center mb-4">
@@ -61,35 +61,35 @@ const Footer = () => {
                 href="https://www.instagram.com/itzz__manoj_?igsh=MWplNm9yanQxODR5cQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-colors"
+                className="w-11 h-11 sm:w-12 sm:h-12 bg-gray-700/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
                 aria-label="Instagram"
               >
-                <Instagram size={20} />
+                <Instagram size={20} className="sm:w-6 sm:h-6" />
               </a>
               <a
                 href="https://github.com/ManojGowda15"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors"
+                className="w-11 h-11 sm:w-12 sm:h-12 bg-gray-700/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-gray-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
                 aria-label="GitHub"
               >
-                <Github size={20} />
+                <Github size={20} className="sm:w-6 sm:h-6" />
               </a>
               <a
                 href="https://www.linkedin.com/in/manojv03/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
+                className="w-11 h-11 sm:w-12 sm:h-12 bg-gray-700/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={20} />
+                <Linkedin size={20} className="sm:w-6 sm:h-6" />
               </a>
               <a
                 href="mailto:manojv13579@example.com"
-                className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                className="w-11 h-11 sm:w-12 sm:h-12 bg-gray-700/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
                 aria-label="Email"
               >
-                <Mail size={20} />
+                <Mail size={20} className="sm:w-6 sm:h-6" />
               </a>
             </div>
           </div>

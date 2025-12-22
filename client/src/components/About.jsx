@@ -26,40 +26,53 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="py-12 sm:py-16 md:py-20 bg-white">
+    <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-start">
           {/* Narrative & Highlights */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-br from-blue-50/60 to-white rounded-3xl p-6 sm:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-blue-100"
+            className="bg-gradient-to-br from-blue-50/60 via-white to-blue-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-blue-100/50"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-            <p className="text-gray-600 text-base sm:text-lg leading-relaxed text-justify">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-3 sm:mb-4">About Me</h2>
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-left sm:text-justify">
               {loading 
                 ? 'Passionate UI/UX Designer with a Creative Approach to Crafting Intuitive and Engaging User Experiences'
                 : aboutContent.description || 'Passionate UI/UX Designer with a Creative Approach to Crafting Intuitive and Engaging User Experiences'}
             </p>
 
-            <div className="mt-8 grid sm:grid-cols-2 gap-4">
+            <div className="mt-6 sm:mt-8 grid sm:grid-cols-2 gap-3 sm:gap-4">
               {(loading ? DEFAULT_ABOUT.highlights : (aboutContent.highlights || [])).map((item, index) => (
-                <div key={index} className="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm">
-                  <p className="text-3xl font-bold text-blue-700">{item.value || ''}</p>
-                  <p className="text-gray-800 font-semibold mt-1">{item.label || ''}</p>
-                  <p className="text-gray-500 text-sm mt-2">{item.detail || ''}</p>
-                </div>
+                <motion.div 
+                  key={index} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-blue-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                >
+                  <p className="text-2xl sm:text-3xl font-bold text-blue-700">{item.value || ''}</p>
+                  <p className="text-gray-800 font-semibold mt-1 text-sm sm:text-base">{item.label || ''}</p>
+                  <p className="text-gray-500 text-xs sm:text-sm mt-2">{item.detail || ''}</p>
+                </motion.div>
               ))}
-              <div className="sm:col-span-2 rounded-2xl p-5 bg-blue-600 text-white shadow-lg">
-                <p className="uppercase tracking-widest text-xs font-semibold opacity-80 mb-2">Mission</p>
-                <p className="text-lg font-semibold">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="sm:col-span-2 rounded-xl sm:rounded-2xl p-4 sm:p-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <p className="uppercase tracking-widest text-xs font-semibold opacity-90 mb-2">Mission</p>
+                <p className="text-base sm:text-lg font-semibold leading-relaxed">
                   {loading 
                     ? 'Crafting meaningful products that balance stunning visuals with dependable performance.'
                     : aboutContent.mission || 'Crafting meaningful products that balance stunning visuals with dependable performance.'}
                 </p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -69,9 +82,9 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-3xl p-6 sm:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-gray-100"
+            className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-gray-100"
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Core Skills</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Core Skills</h3>
             <div className="space-y-6">
               {(loading ? aboutContent.skills : (aboutContent.skills || [])).map((skill, index) => (
                 <motion.div

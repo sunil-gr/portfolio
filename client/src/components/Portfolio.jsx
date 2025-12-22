@@ -56,17 +56,17 @@ const Portfolio = () => {
   }, [fetchProjects]);
 
   return (
-    <section id="portfolio" className="py-12 sm:py-16 md:py-20 bg-blue-50 pt-20 sm:pt-24 md:pt-32">
+    <section id="portfolio" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-blue-50/50 via-white to-blue-50/50 pt-16 sm:pt-20 md:pt-24">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">My Portfolio</h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent mb-3 sm:mb-4 px-4">My Portfolio</h2>
+          <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 leading-relaxed">
             Explore a collection of my design projects, each crafted to deliver seamless,
             user-centered experiences.
           </p>
@@ -109,16 +109,17 @@ const Portfolio = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 justify-items-center px-2 sm:px-4">
             <AnimatePresence>
               {projects.map((project, index) => (
                 <motion.div
                   key={project._id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer group relative w-full max-w-sm"
+                  transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer group relative w-full max-w-sm transition-all duration-300"
                   onClick={() => setSelectedProject(project)}
                 >
                   <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden bg-gray-700">
@@ -146,11 +147,11 @@ const Portfolio = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 sm:p-6">
-                    <span className="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">
+                  <div className="p-4 sm:p-5 md:p-6">
+                    <span className="text-gray-400 text-xs sm:text-sm uppercase tracking-wide font-semibold">
                       {project.category || 'Design'}
                     </span>
-                    <h3 className="text-white text-lg sm:text-xl font-bold mt-2 line-clamp-2">{project.title}</h3>
+                    <h3 className="text-white text-base sm:text-lg md:text-xl font-bold mt-2 line-clamp-2 leading-tight">{project.title}</h3>
                   </div>
                 </motion.div>
               ))}
