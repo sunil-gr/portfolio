@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { aboutAPI } from '../utils/api';
-import { DEFAULT_ABOUT } from '../utils/defaults';
+import { AlertCircle } from 'lucide-react';
 
 const About = () => {
-  const [aboutContent, setAboutContent] = useState(DEFAULT_ABOUT);
+  const [aboutContent, setAboutContent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchAboutContent = async () => {
@@ -13,10 +14,13 @@ const About = () => {
         const response = await aboutAPI.getAbout();
         if (response.data.success && response.data.data) {
           setAboutContent(response.data.data);
+          setError(false);
+        } else {
+          setError(true);
         }
       } catch (error) {
         console.error('Error fetching about content:', error);
-        // Use default values if API fails
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -25,38 +29,77 @@ const About = () => {
     fetchAboutContent();
   }, []);
 
+  // Show error/empty state if no data
+  if (!loading && (error || !aboutContent)) {
+    return (
+      <section id="about" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center py-16">
+            <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-gray-700 mb-2">About Section Not Available</h2>
+            <p className="text-gray-500">Content is being loaded from the database. Please check back later.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-start">
+    <section id="about" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 sm:mb-20"
+        >
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-6">
+            About Me
+          </h2>
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-start">
           {/* Narrative & Highlights */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-br from-blue-50/60 via-white to-blue-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-blue-100/50"
+            className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-blue-200/50"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-3 sm:mb-4">About Me</h2>
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-left sm:text-justify">
-              {loading 
-                ? 'Passionate UI/UX Designer with a Creative Approach to Crafting Intuitive and Engaging User Experiences'
-                : aboutContent.description || 'Passionate UI/UX Designer with a Creative Approach to Crafting Intuitive and Engaging User Experiences'}
-            </p>
+            {loading ? (
+              <div className="space-y-4">
+                <div className="h-24 bg-gray-200 rounded animate-pulse"></div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="h-32 bg-gray-200 rounded animate-pulse"></div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <>
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-left sm:text-justify mb-6">
+                  {aboutContent?.description || ''}
+                </p>
 
-            <div className="mt-6 sm:mt-8 grid sm:grid-cols-2 gap-3 sm:gap-4">
-              {(loading ? DEFAULT_ABOUT.highlights : (aboutContent.highlights || [])).map((item, index) => (
+                <div className="mt-8 sm:mt-10 grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  {(aboutContent?.highlights || []).map((item, index) => (
                 <motion.div 
                   key={index} 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-blue-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="bg-gradient-to-br from-blue-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <p className="text-2xl sm:text-3xl font-bold text-blue-700">{item.value || ''}</p>
+                  <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{item.value || ''}</p>
                   <p className="text-gray-800 font-semibold mt-1 text-sm sm:text-base">{item.label || ''}</p>
-                  <p className="text-gray-500 text-xs sm:text-sm mt-2">{item.detail || ''}</p>
+                  <p className="text-gray-600 text-xs sm:text-sm mt-2">{item.detail || ''}</p>
                 </motion.div>
               ))}
               <motion.div 
@@ -64,16 +107,17 @@ const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="sm:col-span-2 rounded-xl sm:rounded-2xl p-4 sm:p-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+                whileHover={{ scale: 1.02 }}
+                className="sm:col-span-2 rounded-xl sm:rounded-2xl p-4 sm:p-5 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <p className="uppercase tracking-widest text-xs font-semibold opacity-90 mb-2">Mission</p>
                 <p className="text-base sm:text-lg font-semibold leading-relaxed">
-                  {loading 
-                    ? 'Crafting meaningful products that balance stunning visuals with dependable performance.'
-                    : aboutContent.mission || 'Crafting meaningful products that balance stunning visuals with dependable performance.'}
+                  {aboutContent?.mission || ''}
                 </p>
               </motion.div>
             </div>
+              </>
+            )}
           </motion.div>
 
           {/* Skills */}
@@ -82,11 +126,18 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-gray-100"
+            className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-gray-200/50"
           >
-            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Core Skills</h3>
-            <div className="space-y-6">
-              {(loading ? aboutContent.skills : (aboutContent.skills || [])).map((skill, index) => (
+            <h3 className="text-xl sm:text-2xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6 sm:mb-8">Core Skills</h3>
+            {loading ? (
+              <div className="space-y-8">
+                {[1, 2, 3, 4, 5, 6].map(i => (
+                  <div key={i} className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-8">
+                {(aboutContent?.skills || []).map((skill, index) => (
                 <motion.div
                   key={`${skill.name}-${index}`}
                   initial={{ opacity: 0, x: 20 }}
@@ -98,20 +149,22 @@ const About = () => {
                     <span className="text-gray-800 font-semibold">{skill.name}</span>
                     <span className="text-gray-500 text-sm">{skill.progress}%</span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                  <div className="w-full bg-gray-200 rounded-full h-3 sm:h-4 overflow-hidden shadow-inner">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.progress}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1, delay: index * 0.1 }}
-                      className={`${skill.color} h-full rounded-full relative`}
+                      transition={{ duration: 1, delay: index * 0.1, type: 'spring', stiffness: 100 }}
+                      className={`${skill.color} h-full rounded-full relative shadow-lg`}
                     >
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full border-2 border-gray-200"></div>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full border-2 border-white shadow-md"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
                     </motion.div>
                   </div>
                 </motion.div>
               ))}
             </div>
+            )}
           </motion.div>
         </div>
       </div>

@@ -42,17 +42,21 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-blue-50 relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-200/30 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
+          className="text-center mb-16 sm:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent mb-3 sm:mb-4 px-4">Get In Touch</h2>
-          <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-6 px-4 drop-shadow-lg">Get In Touch</h2>
+          <p className="text-gray-700 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 leading-relaxed font-medium">
             Have a project in mind? Let's work together to bring your ideas to life.
           </p>
         </motion.div>
@@ -64,8 +68,8 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="max-w-2xl mx-auto"
         >
-          <form onSubmit={handleSubmit} className="bg-white p-5 sm:p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl border border-gray-100">
-            <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+          <form onSubmit={handleSubmit} className="bg-white/95 backdrop-blur-sm p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl shadow-2xl border border-blue-200/50">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
               <div>
                 <label htmlFor="name" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
                   Name
@@ -98,7 +102,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="mb-4 sm:mb-6">
+            <div className="mb-6 sm:mb-8">
               <label htmlFor="subject" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
                 Subject
               </label>
@@ -114,7 +118,7 @@ const Contact = () => {
               />
             </div>
 
-            <div className="mb-4 sm:mb-6">
+            <div className="mb-6 sm:mb-8">
               <label htmlFor="message" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
                 Message
               </label>

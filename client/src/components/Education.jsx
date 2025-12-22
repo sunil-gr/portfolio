@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, AlertCircle } from 'lucide-react';
 import { educationAPI } from '../utils/api';
 
 const Education = () => {
-  const [educationContent, setEducationContent] = useState({
-    sectionTitle: 'Education',
-    sectionDescription:
-      'All my life I have been driven by my strong belief that education is important. I try to learn something new every single day.',
-    educationItems: [],
-  });
+  const [educationContent, setEducationContent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchEducationContent = async () => {
@@ -18,10 +14,13 @@ const Education = () => {
         const response = await educationAPI.getEducation();
         if (response.data.success && response.data.data) {
           setEducationContent(response.data.data);
+          setError(false);
+        } else {
+          setError(true);
         }
       } catch (error) {
         console.error('Error fetching education content:', error);
-        // Use default values if API fails
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -30,13 +29,32 @@ const Education = () => {
     fetchEducationContent();
   }, []);
 
-  const sortedItems = educationContent.educationItems
+  const sortedItems = educationContent?.educationItems
     ? [...educationContent.educationItems].sort((a, b) => (a.order || 0) - (b.order || 0))
     : [];
 
+  // Show error/empty state if no data
+  if (!loading && (error || !educationContent)) {
+    return (
+      <section id="education" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center py-16">
+            <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-gray-700 mb-2">Education Section Not Available</h2>
+            <p className="text-gray-500">Content is being loaded from the database. Please check back later.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section id="education" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="education" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
+      {/* Decorative Background */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-100/20 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-indigo-100/20 to-transparent"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,24 +64,23 @@ const Education = () => {
         >
           <div className="grid md:grid-cols-[1.4fr_2fr]">
             {/* Left column */}
-            <div className="bg-gradient-to-br from-white via-blue-50/60 to-white p-5 sm:p-6 md:p-8 lg:p-10 border-r border-gray-100">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-800 to-gray-700 bg-clip-text text-transparent">
-                {loading ? 'Education' : educationContent.sectionTitle || 'Education'}
+            <div className="bg-gradient-to-br from-white via-blue-50/60 to-white p-6 sm:p-8 md:p-10 lg:p-12 border-r border-gray-100">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                {loading ? 'Education' : (educationContent?.sectionTitle || 'Education')}
               </h2>
-              <p className="text-gray-600 text-sm sm:text-base md:text-lg mt-3 sm:mt-4 leading-relaxed">
+              <p className="text-gray-700 text-sm sm:text-base md:text-lg mt-3 sm:mt-4 leading-relaxed font-medium">
                 {loading
-                  ? 'All my life I have been driven by my strong belief that education is important. I try to learn something new every single day.'
-                  : educationContent.sectionDescription ||
-                    'All my life I have been driven by my strong belief that education is important. I try to learn something new every single day.'}
+                  ? 'Loading...'
+                  : (educationContent?.sectionDescription || '')}
               </p>
             </div>
 
             {/* Right column */}
-            <div className="relative bg-white p-5 sm:p-6 md:p-8 lg:p-10">
+            <div className="relative bg-white p-6 sm:p-8 md:p-10 lg:p-12">
               <div className="absolute left-4 sm:left-6 md:left-8 top-6 sm:top-8 bottom-6 sm:bottom-8 border-l-2 border-blue-100"></div>
 
               {loading ? (
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {[1, 2, 3].map((i) => (
                     <div key={i} className="pl-10 sm:pl-12 flex items-start space-x-4">
                       <div className="w-3 h-3 rounded-full bg-gray-300 mt-2"></div>
@@ -77,7 +94,7 @@ const Education = () => {
                   ))}
                 </div>
               ) : sortedItems.length > 0 ? (
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {sortedItems.map((item, index) => (
                     <motion.div
                       key={`${item.degree}-${index}`}

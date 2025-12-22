@@ -63,3 +63,11 @@ code {
   background: #555;
 }
 
+/* Custom padding override for lg:py-36 */
+@media (min-width: 1024px) {
+  .lg\:py-36 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
+

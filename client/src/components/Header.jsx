@@ -6,14 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      
       // Detect active section for menu highlighting
       const sections = ['home', 'about', 'services', 'education', 'portfolio', 'contact', 'feedback'];
       const scrollPosition = window.scrollY + 100;
@@ -103,41 +100,63 @@ const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white backdrop-blur-lg shadow-md border-b border-gray-100"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <div className="w-30 h-12 rounded-lg flex items-center justify-center text-gray-800 font-bold text-xl">
-              Manoj V
-            </div>
+          <Link to="/" className="flex items-center group">
+            <motion.div 
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              className="relative w-12 h-12 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg mr-3 group-hover:shadow-xl transition-all"
+            >
+              <span className="text-white font-bold text-lg">MV</span>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-xl"></div>
+            </motion.div>
+            <span className="text-gray-800 font-bold text-xl group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-indigo-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">Manoj V</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map(link => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={e => handleNavClick(e, link.href, link.isRoute)}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
+          <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+            {navLinks.map(link => {
+              const Icon = link.icon;
+              const isActive = activeSection === link.section;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={e => handleNavClick(e, link.href, link.isRoute)}
+                  className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 font-semibold ${
+                    isActive
+                      ? 'text-indigo-600 bg-gradient-to-r from-indigo-50 to-blue-50 shadow-md'
+                      : 'text-gray-700 hover:text-indigo-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50/50'
+                  }`}
+                >
+                  <Icon size={18} className={isActive ? 'text-blue-600' : 'text-gray-500 group-hover:text-blue-600'} />
+                  <span>{link.name}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={e => handleNavClick(e, '#contact')}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+              className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white px-6 py-2.5 rounded-xl hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl flex items-center space-x-2 transform hover:scale-105"
             >
-              Let's Talk
-            </button>
+              <MessageCircle size={18} />
+              <span>Let's Talk</span>
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
