@@ -8,8 +8,11 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "jest",
+    "test-apis": "node test-apis.js",
+    "view-db": "node view-database.js",
     "create-admin": "node src/utils/createAdmin.js",
-    "reset-admin-password": "node src/utils/resetAdminPassword.js"
+    "reset-admin-password": "node src/utils/resetAdminPassword.js",
+    "seed": "node src/utils/seedDatabase.js"
   },
   "keywords": [
     "portfolio",
