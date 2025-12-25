@@ -67,14 +67,14 @@ const About = () => {
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10">
           {/* Left Column - Description & Mission */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 space-y-6 sm:space-y-8"
+            className="lg:col-span-3 space-y-6 sm:space-y-8"
           >
             {/* Description Card */}
             <motion.div
@@ -176,7 +176,7 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="card-bg-light rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-primary-light relative overflow-hidden"
+            className="lg:col-span-2 card-bg-light rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-primary-light relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#98C1d9]/20 to-transparent rounded-br-full"></div>
             <div className="relative z-10">
