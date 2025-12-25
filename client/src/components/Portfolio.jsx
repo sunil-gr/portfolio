@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ZoomIn, ExternalLink, X, AlertCircle } from 'lucide-react';
 import { projectsAPI } from '../utils/api';
@@ -149,9 +150,9 @@ const Portfolio = () => {
                   >
                     {isAppDesign ? (
                       // Modern Mobile Phone Frame for App Design
-                      <div className="relative w-full max-w-[300px] mx-auto">
+                      <div className="relative w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px] lg:max-w-[300px] mx-auto">
                         {/* Phone Frame with Modern Design - Using base color scheme */}
-                        <div className="relative bg-gradient-to-br from-[#98C1d9] via-[#7BA8C4] to-[#293241] rounded-[3.5rem] p-2.5 sm:p-3 shadow-2xl ring-4 ring-[#98C1d9]/30">
+                        <div className="relative bg-gradient-to-br from-[#98C1d9] via-[#7BA8C4] to-[#293241] rounded-[3.5rem] p-1 sm:p-1.5 shadow-2xl ring-1 ring-[#98C1d9]/30">
                           {/* Dynamic Island / Notch - Modern Design */}
                           <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-7 bg-[#293241] rounded-full z-10 flex items-center justify-center shadow-lg">
                             <div className="w-20 h-5 bg-[#1F2530] rounded-full"></div>
@@ -161,7 +162,7 @@ const Portfolio = () => {
                           <div className="relative bg-[#293241] rounded-[3rem] overflow-hidden shadow-inner">
                             {/* Modern Status Bar */}
                             <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#293241] via-[#1F2530] to-transparent z-20 flex items-center justify-between px-5 pt-1 text-[#E0FBFC]">
-                              <span className="text-xs font-semibold">9:41</span>
+                              <span className="text-xs font-semibold">10:15</span>
                               <div className="flex items-center gap-1.5">
                                 <svg className="w-4 h-3" viewBox="0 0 20 12" fill="none">
                                   <rect x="0" y="4" width="16" height="4" rx="1" fill="#E0FBFC" opacity="0.9"/>
@@ -178,7 +179,7 @@ const Portfolio = () => {
                               <img
                                 src={project.image || 'https://via.placeholder.com/400x300'}
                                 alt={project.title}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                                className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700 ease-out"
                                 onError={(e) => {
                                   console.error('Image failed to load:', project.image);
                                   if (e.target.src !== 'https://via.placeholder.com/400x300?text=Image+Not+Available') {
@@ -268,21 +269,22 @@ const Portfolio = () => {
           </div>
         )}
 
-        {/* Project Modal */}
-        <AnimatePresence>
-          {selectedProject && (
+        {/* Project Modal - Rendered via Portal to ensure it's above all content */}
+        {selectedProject && createPortal(
+          <AnimatePresence>
             <motion.div
+              key="modal"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-2 sm:p-4"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 portfolio-modal-backdrop"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className={`bg-white rounded-lg w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto ${
+                className={`bg-white rounded-lg w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto relative portfolio-modal-content ${
                   selectedProject.category === 'App Design' ? 'max-w-2xl' : 'max-w-4xl'
                 }`}
                 onClick={(e) => e.stopPropagation()}
@@ -290,18 +292,19 @@ const Portfolio = () => {
                 <div className="relative">
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 z-10"
+                    className="absolute top-0 right-0 m-4 sm:m-6 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:bg-gray-100 z-[100001]"
                     aria-label="Close modal"
+                    style={{ zIndex: 100001 }}
                   >
                     <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                   
                   {selectedProject.category === 'App Design' ? (
                     // Modern Mobile Phone Frame in Modal for App Design
-                    <div className="flex flex-col items-center justify-center p-6 sm:p-8 section-bg-gradient">
+                    <div className="flex flex-col items-center justify-center p-6 sm:p-8 section-bg-gradient pt-8 sm:pt-12">
                       <div className="relative w-full max-w-[380px] mx-auto">
                         {/* Modern Phone Frame - Using base color scheme */}
-                        <div className="relative bg-gradient-to-br from-[#98C1d9] via-[#7BA8C4] to-[#293241] rounded-[4rem] p-3 sm:p-4 shadow-2xl ring-4 ring-[#98C1d9]/30">
+                        <div className="relative bg-gradient-to-br from-[#98C1d9] via-[#7BA8C4] to-[#293241] rounded-[4rem] p-1.5 sm:p-2 shadow-2xl ring-1 ring-[#98C1d9]/30">
                           {/* Modern Dynamic Island / Notch */}
                           <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-[#293241] rounded-full z-10 flex items-center justify-center shadow-lg">
                             <div className="w-24 h-6 bg-[#1F2530] rounded-full"></div>
@@ -311,7 +314,7 @@ const Portfolio = () => {
                           <div className="relative bg-[#293241] rounded-[3.5rem] overflow-hidden shadow-inner">
                             {/* Modern Status Bar */}
                             <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#293241] via-[#1F2530] to-transparent z-20 flex items-center justify-between px-6 pt-2 text-[#E0FBFC]">
-                              <span className="text-sm font-semibold">9:41</span>
+                              <span className="text-sm font-semibold">10:15</span>
                               <div className="flex items-center gap-2">
                                 <svg className="w-5 h-3.5" viewBox="0 0 20 12" fill="none">
                                   <rect x="0" y="4" width="16" height="4" rx="1" fill="#E0FBFC" opacity="0.9"/>
@@ -328,7 +331,7 @@ const Portfolio = () => {
                               <img
                                 src={normalizeImageUrl(selectedProject.image) || 'https://via.placeholder.com/400x300'}
                                 alt={selectedProject.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover object-top"
                                 onError={(e) => {
                                   console.error('Image failed to load:', selectedProject.image);
                                   if (e.target.src !== 'https://via.placeholder.com/400x300?text=Image+Not+Available') {
@@ -468,8 +471,9 @@ const Portfolio = () => {
                 </div>
               </motion.div>
             </motion.div>
-          )}
-        </AnimatePresence>
+          </AnimatePresence>,
+          document.body
+        )}
       </div>
     </section>
   );

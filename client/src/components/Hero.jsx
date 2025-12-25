@@ -192,7 +192,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="hero-section-height relative overflow-hidden">
+    <section id="home" className="hero-section-height relative overflow-x-hidden">
       {/* Light Gradient Background */}
       <div className="absolute inset-0 section-bg-gradient"></div>
       <div 
@@ -248,9 +248,9 @@ const Hero = () => {
       {/* Content Container */}
       <div className="relative z-10">
 
-        <div className="container mx-auto h-full flex items-center">
-        <div className="grid md:grid-cols-2 gap-0 items-center w-full">
-          <div className="px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto flex items-center py-2 sm:py-4 md:py-6 min-h-full md:h-full">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-0 items-center w-full">
+          <div className="px-4 sm:px-6 lg:px-8 order-2 md:order-1">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -271,7 +271,7 @@ const Hero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-primary text-base sm:text-lg md:text-xl mb-3 font-semibold"
+                  className="text-primary text-sm sm:text-base md:text-lg lg:text-xl mb-1 sm:mb-2 md:mb-3 font-semibold"
                 >
                   {heroContent?.greeting || ''}
                 </motion.p>
@@ -279,7 +279,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-section-title mb-2 sm:mb-3 leading-tight"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-section-title mb-1 sm:mb-2 md:mb-3 leading-tight"
                 >
                   {heroContent?.name || ''}
                 </motion.h1>
@@ -288,7 +288,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-section-title mb-3 sm:mb-4 leading-tight"
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-section-title mb-2 sm:mb-3 md:mb-4 leading-tight"
                 >
                   {heroContent?.designation || ''}
                 </motion.h2>
@@ -296,7 +296,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-section-subtitle text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-left sm:text-justify max-w-xl font-medium"
+                  className="text-section-subtitle text-xs sm:text-sm md:text-base lg:text-lg mb-2 sm:mb-3 md:mb-4 leading-relaxed text-left sm:text-justify max-w-xl font-medium line-clamp-2 sm:line-clamp-3"
                 >
                   {heroContent?.description || ''}
                 </motion.p>
@@ -309,9 +309,9 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55 }}
-                className="mb-4 sm:mb-6"
+                className="mb-2 sm:mb-3 md:mb-4"
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   {/* Contact Details Column */}
                   {(heroContent.phone || heroContent.email || heroContent.address) && (
                     <div className="space-y-2 sm:space-y-3">
@@ -410,7 +410,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6"
+              className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4 z-20 relative"
             >
               <Link
                 to="#contact"
@@ -421,11 +421,12 @@ const Hero = () => {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="btn-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-bold flex items-center justify-center text-sm sm:text-base shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105"
+                className="btn-primary px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-bold flex items-center justify-center text-xs sm:text-sm md:text-base shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105"
               >
-                Let's Talk
+                <span className="hidden sm:inline">Let's Talk</span>
+                <span className="sm:hidden">Talk</span>
                 <svg
-                  className="ml-2 w-4 h-4"
+                  className="ml-1 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -442,17 +443,19 @@ const Hero = () => {
               <button
                 onClick={handleDownloadCV}
                 disabled={downloading}
-                className="btn-secondary px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-bold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
+                className="btn-secondary px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-bold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
               >
                 {downloading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Downloading...
+                    <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mr-1 sm:mr-2"></div>
+                    <span className="hidden sm:inline">Downloading...</span>
+                    <span className="sm:hidden">Loading...</span>
                   </>
                 ) : (
                   <>
-                    <Download className="mr-2" size={18} />
-                    Download CV
+                    <Download className="mr-1 sm:mr-2" size={16} />
+                    <span className="hidden sm:inline">Download CV</span>
+                    <span className="sm:hidden">CV</span>
                   </>
                 )}
               </button>
@@ -465,9 +468,9 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative z-10 order-1 md:order-2 pr-0"
+            className="relative z-10 order-1 md:order-2 pr-0 flex justify-center md:justify-end mt-8 md:mt-0"
           >
-            <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg ml-auto mr-0">
+            <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md mx-auto md:ml-auto md:mr-0">
               <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full orb-primary blur-3xl opacity-50"></div>
               <div className="absolute -bottom-6 -left-4 w-20 h-20 rounded-full orb-primary blur-3xl opacity-50"></div>
               {/* Dynamic Portrait Image - Fetched from Database */}
@@ -476,13 +479,13 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 }}
-                  className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
+                  className="relative rounded-2xl overflow-visible shadow-2xl border-4 border-white"
                 >
                   <img
                     src={heroContent.image}
                     alt={heroContent?.name || 'Portrait'}
-                    className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] object-cover object-top rounded-xl"
-                    loading="lazy"
+                    className="w-full h-auto max-h-[180px] sm:max-h-[240px] md:max-h-[300px] lg:max-h-[350px] xl:max-h-[400px] object-contain rounded-xl"
+                    loading="eager"
                     onError={e => {
                       console.error('Error loading hero image:', heroContent.image);
                       // Prevent infinite loop by checking if already set to placeholder
@@ -504,7 +507,7 @@ const Hero = () => {
                   transition={{ delay: 0.7 }}
                   className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
                 >
-                  <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] bg-gradient-to-br from-[rgba(224,251,252,0.5)] via-[rgba(152,193,217,0.3)] to-[rgba(224,251,252,0.5)] flex items-center justify-center rounded-xl">
+                  <div className="h-[180px] sm:h-[240px] md:h-[300px] lg:h-[350px] xl:h-[400px] bg-gradient-to-br from-[rgba(224,251,252,0.5)] via-[rgba(152,193,217,0.3)] to-[rgba(224,251,252,0.5)] flex items-center justify-center rounded-xl">
                     <div className="text-center px-6">
                       <div className="w-28 h-28 gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
                         <span className="text-4xl">👨‍💼</span>

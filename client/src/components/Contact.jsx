@@ -81,7 +81,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg outline-none text-sm sm:text-base"
                   placeholder="Your Name"
                 />
               </div>
@@ -96,7 +96,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg outline-none text-sm sm:text-base"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -113,7 +113,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg outline-none text-sm sm:text-base"
                 placeholder="Project Inquiry"
               />
             </div>
@@ -129,7 +129,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows="5"
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg outline-none resize-none text-sm sm:text-base"
                 placeholder="Tell me about your project..."
               ></textarea>
             </div>

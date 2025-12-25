@@ -31,13 +31,23 @@ const Header = () => {
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
+      // Store the current scroll position
+      const scrollY = window.scrollY;
+      // Prevent scrolling
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+      
+      return () => {
+        // Restore scroll position when menu closes
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      };
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [isMobileMenuOpen]);
 
   const navLinks = [
@@ -117,7 +127,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+          <nav className="hidden lg:flex items-center space-x-2 xl:space-x-4">
             {navLinks.map(link => {
               const Icon = link.icon;
               const isActive = activeSection === link.section;
@@ -147,7 +157,7 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -163,7 +173,7 @@ const Header = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="md:hidden relative p-2.5 text-primary transition-colors rounded-xl hover:bg-primary"
+            className="lg:hidden relative p-2.5 text-primary transition-colors rounded-xl hover:bg-primary"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -191,8 +201,9 @@ const Header = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-[60] md:hidden"
+              className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm mobile-menu-overlay lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
+              style={{ zIndex: 9998 }}
             />
           )}
         </AnimatePresence>
@@ -205,7 +216,8 @@ const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 h-full w-72 max-w-[85vw] mobile-menu-bg shadow-2xl z-[70] md:hidden flex flex-col border-r border-primary"
+              className="fixed top-0 left-0 h-full w-72 max-w-[85vw] mobile-menu-bg shadow-2xl mobile-menu-sidebar lg:hidden flex flex-col border-r border-primary"
+              style={{ zIndex: 9999 }}
             >
               {/* Decorative Background Pattern */}
               <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden">
