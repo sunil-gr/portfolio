@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Monitor, Smartphone, ArrowRight, AlertCircle } from 'lucide-react';
+import { Monitor, Smartphone, Code, ArrowRight, AlertCircle } from 'lucide-react';
 import { servicesAPI } from '../utils/api';
 
 const Services = () => {
@@ -35,6 +35,7 @@ const Services = () => {
   const iconMap = {
     Smartphone: Smartphone,
     Monitor: Monitor,
+    Code: Code,
   };
 
   // Show error/empty state if no data
@@ -83,8 +84,8 @@ const Services = () => {
             <>
               <div className="h-12 bg-gray-200 rounded w-64 mx-auto mb-6 animate-pulse"></div>
               <div className="h-6 bg-gray-200 rounded w-96 mx-auto mb-16 animate-pulse"></div>
-              <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-5xl mx-auto">
-                {[1, 2].map(i => (
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
+                {[1, 2, 3].map(i => (
                   <div key={i} className="h-64 bg-gray-200 rounded-2xl animate-pulse"></div>
                 ))}
               </div>
@@ -102,7 +103,7 @@ const Services = () => {
         </motion.div>
 
         {!loading && (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
             {(servicesContent?.services || []).sort((a, b) => (a.order || 0) - (b.order || 0)).map((service, index) => {
             const Icon = iconMap[service.icon] || Smartphone;
             const isActive = activeService === index;

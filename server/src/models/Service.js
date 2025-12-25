@@ -28,8 +28,8 @@ const serviceSchema = new mongoose.Schema(
         },
         icon: {
           type: String,
-          default: 'Smartphone', // 'Smartphone' or 'Monitor'
-          enum: ['Smartphone', 'Monitor'],
+          default: 'Smartphone', // 'Smartphone', 'Monitor', or 'Code'
+          enum: ['Smartphone', 'Monitor', 'Code'],
         },
         shortDescription: {
           type: String,

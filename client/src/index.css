@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Color Scheme Variables */
+:root {
+  --color-text-primary: #293241;
+  --color-bg-primary: #98C1d9;
+  --color-logo-primary: #E0FBFC;
+  
+  /* Color variations for gradients and hover states */
+  --color-text-primary-dark: #1F2530;
+  --color-bg-primary-light: #E0FBFC;
+  --color-bg-primary-dark: #7BA8C4;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -69,5 +81,144 @@ code {
     padding-top: 4rem !important;
     padding-bottom: 4rem !important;
   }
+}
+
+/* Hero section height accounting for fixed header */
+.hero-section-height {
+  height: calc(100vh - 5rem);
+  padding-top: 6rem;
+}
+
+/* Custom Color Classes */
+.text-primary {
+  color: var(--color-text-primary) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-bg-primary) !important;
+}
+
+.bg-logo {
+  background-color: var(--color-logo-primary) !important;
+}
+
+.border-primary {
+  border-color: var(--color-text-primary) !important;
+}
+
+.hover\:bg-primary-light:hover {
+  background-color: var(--color-bg-primary-light) !important;
+}
+
+.hover\:bg-primary-dark:hover {
+  background-color: var(--color-bg-primary-dark) !important;
+}
+
+.hover\:text-primary-dark:hover {
+  color: var(--color-text-primary-dark) !important;
+}
+
+.bg-primary-light {
+  background-color: var(--color-bg-primary-light) !important;
+}
+
+.bg-primary-dark {
+  background-color: var(--color-bg-primary-dark) !important;
+}
+
+.text-primary-dark {
+  color: var(--color-text-primary-dark) !important;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--color-text-primary) !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-text-primary-dark) !important;
+}
+
+.btn-secondary {
+  background-color: var(--color-bg-primary-light) !important;
+  color: var(--color-text-primary) !important;
+  border-color: var(--color-text-primary) !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-primary) !important;
+  border-color: var(--color-text-primary) !important;
+}
+
+/* Section Backgrounds */
+.section-bg-primary {
+  background-color: var(--color-bg-primary) !important;
+}
+
+.section-bg-light {
+  background-color: var(--color-bg-primary-light) !important;
+}
+
+/* Logo Styles */
+.logo-bg {
+  background-color: var(--color-logo-primary) !important;
+}
+
+.logo-text {
+  color: var(--color-text-primary) !important;
+}
+
+/* Active State */
+.nav-active {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+.nav-active-indicator {
+  background-color: var(--color-text-primary) !important;
+}
+
+/* Mobile Menu */
+.mobile-menu-bg {
+  background-color: var(--color-bg-primary) !important;
+  border-color: var(--color-text-primary) !important;
+}
+
+.mobile-menu-header {
+  background-color: var(--color-bg-primary-light) !important;
+  border-color: var(--color-text-primary) !important;
+}
+
+/* Icon Container */
+.icon-container-active {
+  background-color: var(--color-text-primary) !important;
+}
+
+.icon-container-inactive {
+  background-color: var(--color-bg-primary-light) !important;
+}
+
+.icon-container-inactive:hover {
+  background-color: var(--color-bg-primary) !important;
+}
+
+/* Social Links */
+.social-link-bg {
+  background-color: var(--color-bg-primary-light) !important;
+  border-color: var(--color-text-primary) !important;
+}
+
+.social-link-bg:hover {
+  background-color: rgba(152, 193, 217, 0.2) !important;
+}
+
+/* Decorative Orbs */
+.orb-primary {
+  background-color: var(--color-bg-primary-light) !important;
+}
+
+.orb-text {
+  background-color: var(--color-text-primary) !important;
 }
 

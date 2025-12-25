@@ -180,7 +180,7 @@ const Hero = () => {
   // Show error/empty state if no data
   if (!loading && (error || !heroContent)) {
     return (
-      <section id="home" className="min-h-screen relative overflow-x-hidden pt-16 sm:pt-20 pb-20 sm:pb-24 md:pb-32 flex items-center justify-center">
+      <section id="home" className="hero-section-height relative overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-blue-50/80 to-indigo-50"></div>
         <div className="relative z-10 text-center px-4">
           <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
@@ -192,7 +192,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="min-h-screen relative overflow-x-hidden pt-16 sm:pt-20 pb-20 sm:pb-24 md:pb-32">
+    <section id="home" className="hero-section-height relative overflow-hidden">
       {/* Light Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-blue-50/80 to-indigo-50"></div>
       <div 
@@ -248,15 +248,16 @@ const Hero = () => {
       {/* Content Container */}
       <div className="relative z-10">
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 sm:pb-16">
-        <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-14 lg:gap-20 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative z-10 order-2 md:order-1"
-          >
+        <div className="container mx-auto h-full flex items-center">
+        <div className="grid md:grid-cols-2 gap-0 items-center w-full">
+          <div className="px-4 sm:px-6 lg:px-8">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="relative z-10 order-2 md:order-1"
+            >
             {loading ? (
               <div className="space-y-4">
                 <div className="h-6 bg-gray-200 rounded w-32 animate-pulse"></div>
@@ -278,7 +279,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-2 sm:mb-3 leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-2 sm:mb-3 leading-tight"
                 >
                   {heroContent?.name || ''}
                 </motion.h1>
@@ -287,7 +288,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight"
+                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3 sm:mb-4 leading-tight"
                 >
                   {heroContent?.designation || ''}
                 </motion.h2>
@@ -295,63 +296,113 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-gray-700 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 leading-relaxed text-left sm:text-justify max-w-xl font-medium"
+                  className="text-gray-700 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-left sm:text-justify max-w-xl font-medium"
                 >
                   {heroContent?.description || ''}
                 </motion.p>
               </>
             )}
 
-            {/* Contact Details */}
-            {heroContent && (heroContent.phone || heroContent.email || heroContent.address) && (
+            {/* Contact Details & Social Links */}
+            {(heroContent && (heroContent.phone || heroContent.email || heroContent.address || heroContent.linkedinUrl || heroContent.githubUrl)) && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55 }}
-                className="mb-8 space-y-3"
+                className="mb-4 sm:mb-6"
               >
-                {heroContent?.phone && (
-                  <motion.div 
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-center gap-4 transition-all duration-300 group"
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                      <Phone className="text-blue-600" size={18} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  {/* Contact Details Column */}
+                  {(heroContent.phone || heroContent.email || heroContent.address) && (
+                    <div className="space-y-2 sm:space-y-3">
+                      {heroContent?.phone && (
+                        <motion.div 
+                          whileHover={{ scale: 1.02, x: 5 }}
+                          className="flex items-center gap-4 transition-all duration-300 group"
+                        >
+                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                            <Phone className="text-blue-600" size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Phone</p>
+                            <p className="text-gray-800 font-semibold text-sm sm:text-base">{heroContent.phone}</p>
+                          </div>
+                        </motion.div>
+                      )}
+                      {heroContent?.email && (
+                        <motion.div 
+                          whileHover={{ scale: 1.02, x: 5 }}
+                          className="flex items-center gap-4 transition-all duration-300 group"
+                        >
+                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                            <Mail className="text-blue-600" size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Email</p>
+                            <p className="text-gray-800 font-semibold text-sm sm:text-base truncate">{heroContent.email}</p>
+                          </div>
+                        </motion.div>
+                      )}
+                      {heroContent?.address && (
+                        <motion.div 
+                          whileHover={{ scale: 1.02, x: 5 }}
+                          className="flex items-center gap-4 transition-all duration-300 group"
+                        >
+                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                            <MapPin className="text-blue-600" size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Address</p>
+                            <p className="text-gray-800 font-semibold text-sm sm:text-base">{heroContent.address}</p>
+                          </div>
+                        </motion.div>
+                      )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Phone</p>
-                      <p className="text-gray-800 font-semibold text-sm sm:text-base">{heroContent.phone}</p>
-                  </div>
-                  </motion.div>
-                )}
-                {heroContent?.email && (
-                  <motion.div 
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-center gap-4 transition-all duration-300 group"
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                      <Mail className="text-blue-600" size={18} />
+                  )}
+
+                  {/* Social Links Column */}
+                  {(heroContent.linkedinUrl || heroContent.githubUrl) && (
+                    <div className="space-y-2 sm:space-y-3">
+                      <h3 className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2 sm:mb-3">Social Links</h3>
+                      {heroContent?.linkedinUrl && (
+                        <motion.a
+                          href={heroContent.linkedinUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.02, x: 5 }}
+                          className="flex items-center gap-4 transition-all duration-300 group"
+                          aria-label="LinkedIn"
+                        >
+                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                            <Linkedin className="text-blue-600" size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">LinkedIn</p>
+                            <p className="text-gray-800 font-semibold text-sm sm:text-base truncate">Connect with me</p>
+                          </div>
+                        </motion.a>
+                      )}
+                      {heroContent?.githubUrl && (
+                        <motion.a
+                          href={heroContent.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.02, x: 5 }}
+                          className="flex items-center gap-4 transition-all duration-300 group"
+                          aria-label="GitHub"
+                        >
+                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                            <Github className="text-blue-600" size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">GitHub</p>
+                            <p className="text-gray-800 font-semibold text-sm sm:text-base truncate">View my work</p>
+                          </div>
+                        </motion.a>
+                      )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Email</p>
-                      <p className="text-gray-800 font-semibold text-sm sm:text-base truncate">{heroContent.email}</p>
-                  </div>
-                  </motion.div>
-                )}
-                {heroContent?.address && (
-                  <motion.div 
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-center gap-4 transition-all duration-300 group"
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                      <MapPin className="text-blue-600" size={18} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Address</p>
-                      <p className="text-gray-800 font-semibold text-sm sm:text-base">{heroContent.address}</p>
-                  </div>
-                  </motion.div>
-                )}
+                  )}
+                </div>
               </motion.div>
             )}
 
@@ -359,7 +410,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6"
             >
               <Link
                 to="#contact"
@@ -406,49 +457,17 @@ const Hero = () => {
                 )}
               </button>
             </motion.div>
-
-            {/* Social Media Icons */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex items-center mt-4 sm:mt-6"
-            >
-              <div className="bg-white/90 backdrop-blur-md p-3 sm:p-4 rounded-xl shadow-xl flex items-center space-x-4 sm:space-x-6 border border-gray-200">
-                {heroContent?.linkedinUrl && (
-                  <a
-                    href={heroContent.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-700 transition-all duration-300 hover:scale-125"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin size={22} className="sm:w-6 sm:h-6" />
-                  </a>
-                )}
-                {heroContent?.githubUrl && (
-                  <a
-                    href={heroContent.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-800 hover:text-indigo-600 transition-all duration-300 hover:scale-125"
-                    aria-label="GitHub"
-                  >
-                    <Github size={22} className="sm:w-6 sm:h-6" />
-                  </a>
-                )}
-              </div>
-            </motion.div>
           </motion.div>
+          </div>
 
           {/* Right Content - Portrait */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative z-10 order-1 md:order-2"
+            className="relative z-10 order-1 md:order-2 pr-0"
           >
-            <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+            <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg ml-auto mr-0">
               <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-blue-300 blur-3xl opacity-50"></div>
               <div className="absolute -bottom-6 -left-4 w-20 h-20 rounded-full bg-indigo-300 blur-3xl opacity-50"></div>
               {/* Dynamic Portrait Image - Fetched from Database */}
@@ -462,7 +481,7 @@ const Hero = () => {
                   <img
                     src={heroContent.image}
                     alt={heroContent?.name || 'Portrait'}
-                    className="w-full h-[280px] sm:h-[360px] md:h-[450px] lg:h-[500px] xl:h-[550px] object-cover object-top rounded-xl"
+                    className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] object-cover object-top rounded-xl"
                     loading="lazy"
                     onError={e => {
                       console.error('Error loading hero image:', heroContent.image);
@@ -485,7 +504,7 @@ const Hero = () => {
                   transition={{ delay: 0.7 }}
                   className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
                 >
-                  <div className="h-[280px] sm:h-[360px] md:h-[450px] lg:h-[500px] xl:h-[550px] bg-gradient-to-br from-blue-100 via-blue-50 to-indigo-100 flex items-center justify-center rounded-xl">
+                  <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] bg-gradient-to-br from-blue-100 via-blue-50 to-indigo-100 flex items-center justify-center rounded-xl">
                     <div className="text-center px-6">
                       <div className="w-28 h-28 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
                         <span className="text-4xl">👨‍💼</span>
