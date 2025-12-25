@@ -244,15 +244,15 @@ const Hero = () => {
       />
 
       {/* Content Container */}
-      <div className="relative z-10 h-full flex items-center">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 sm:py-10 md:py-12 lg:py-16">
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center w-full">
+      <div className="relative z-10 h-full md:h-full flex items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 pb-4 sm:pt-24 sm:pb-6 md:py-12 lg:py-16">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-start md:items-center w-full">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="relative z-10 space-y-2 sm:space-y-3 md:space-y-4"
+              className="relative z-10 space-y-2 sm:space-y-3 md:space-y-4 w-full"
             >
               {loading ? (
                 <div className="space-y-4">
@@ -418,10 +418,10 @@ const Hero = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative z-10 order-1 md:order-2 flex flex-col items-center md:items-end justify-center mt-4 md:mt-0"
+              className="relative z-10 order-1 md:order-2 flex flex-col items-center md:items-end justify-center mt-6 md:mt-0 w-full"
             >
               {/* Portrait Image */}
-              <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md mx-auto md:ml-auto md:mr-0 mb-6">
+              <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md mx-auto md:ml-auto md:mr-0 mb-4">
                 <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full orb-primary blur-3xl opacity-50"></div>
                 <div className="absolute -bottom-6 -left-4 w-20 h-20 rounded-full orb-primary blur-3xl opacity-50"></div>
               {/* Dynamic Portrait Image - Fetched from Database */}
@@ -478,7 +478,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md flex flex-col sm:flex-row gap-2 sm:gap-3"
+                className="w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md mx-auto md:mx-0 flex flex-col sm:flex-row gap-2 sm:gap-3"
               >
                 <Link
                   to="#contact"

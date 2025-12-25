@@ -95,10 +95,11 @@ code {
 
 @media (max-width: 768px) {
   .hero-section-height {
-    height: calc(100vh - 5rem);
+    height: auto;
     min-height: calc(100vh - 5rem);
-    max-height: calc(100vh - 5rem);
-    overflow: hidden;
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: visible;
     display: flex;
     flex-direction: column;
   }
