@@ -151,9 +151,7 @@ const Hero = () => {
           window.URL.revokeObjectURL(url);
         }, 1000);
       } catch (blobError) {
-        // Fallback: Open in new window/tab if blob URL fails (for HTTP connections or mobile)
-        console.warn('Blob URL method failed, trying direct download:', blobError);
-        // Try direct link approach
+        // Fallback to direct download if blob URL fails
         const directUrl = `${API_URL}/cv`;
         const fallbackLink = document.createElement('a');
         fallbackLink.href = directUrl;
