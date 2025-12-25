@@ -60,7 +60,7 @@ const Education = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto card-bg rounded-2xl sm:rounded-3xl border border-primary-light shadow-xl overflow-hidden"
+          className="w-full card-bg rounded-2xl sm:rounded-3xl border border-primary-light shadow-xl overflow-hidden"
         >
           <div className="grid md:grid-cols-[1.4fr_2fr]">
             {/* Left column */}
