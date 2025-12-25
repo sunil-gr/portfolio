@@ -12,7 +12,13 @@
     "view-db": "node view-database.js",
     "create-admin": "node src/utils/createAdmin.js",
     "reset-admin-password": "node src/utils/resetAdminPassword.js",
-    "seed": "node src/utils/seedDatabase.js"
+    "seed": "node src/utils/seedDatabase.js",
+    "export-db": "node db/exportDatabase.js",
+    "export-db-schema": "node db/exportDatabase.js --schema",
+    "export-db-data": "node db/exportDatabase.js --data",
+    "import-db": "node db/importDatabase.js",
+    "import-db-schema": "node db/importDatabase.js --schema",
+    "import-db-data": "node db/importDatabase.js --data"
   },
   "keywords": [
     "portfolio",
