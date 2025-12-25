@@ -171,7 +171,7 @@ code {
 
 /* Active State */
 .nav-active {
-  background-color: var(--color-bg-primary) !important;
+  background-color: #dce9f1 !important;
   color: var(--color-text-primary) !important;
 }
 
@@ -220,5 +220,188 @@ code {
 
 .orb-text {
   background-color: var(--color-text-primary) !important;
+}
+
+/* Section Backgrounds */
+.section-bg-gradient {
+  background: linear-gradient(to bottom right, var(--color-bg-primary-light), white, rgba(152, 193, 217, 0.3)) !important;
+}
+
+.section-bg-gradient-alt {
+  background: linear-gradient(to bottom right, var(--color-bg-primary-light), rgba(152, 193, 217, 0.5), var(--color-bg-primary-light)) !important;
+}
+
+.section-bg-gradient-light {
+  background: linear-gradient(to bottom right, white, var(--color-gray-50), rgba(152, 193, 217, 0.5)) !important;
+}
+
+/* Text Colors */
+.text-section-title {
+  background: linear-gradient(to right, var(--color-text-primary), var(--color-text-primary-dark)) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+.text-section-subtitle {
+  color: var(--color-text-primary) !important;
+}
+
+.text-body {
+  color: var(--color-text-primary) !important;
+}
+
+.text-body-light {
+  color: rgba(41, 50, 65, 0.7) !important;
+}
+
+/* Card Backgrounds */
+.card-bg {
+  background-color: white !important;
+  border-color: rgba(152, 193, 217, 0.5) !important;
+}
+
+.card-bg-light {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Borders */
+.border-primary-light {
+  border-color: rgba(152, 193, 217, 0.5) !important;
+}
+
+.border-primary-medium {
+  border-color: var(--color-bg-primary) !important;
+}
+
+/* Gradients for Buttons and Icons */
+.gradient-primary {
+  background: linear-gradient(to bottom right, var(--color-text-primary), var(--color-text-primary-dark)) !important;
+}
+
+.gradient-primary-hover {
+  background: linear-gradient(to bottom right, var(--color-text-primary-dark), var(--color-text-primary)) !important;
+}
+
+/* Icon Containers */
+.icon-bg-active {
+  background: linear-gradient(to bottom right, var(--color-text-primary), var(--color-text-primary-dark)) !important;
+}
+
+.icon-bg-inactive {
+  background: linear-gradient(to bottom right, var(--color-bg-primary-light), var(--color-bg-primary)) !important;
+}
+
+.icon-bg-inactive:hover {
+  background: var(--color-bg-primary) !important;
+}
+
+/* Service Cards */
+.service-card {
+  background-color: white !important;
+  border-color: rgba(152, 193, 217, 0.2) !important;
+}
+
+.service-card:hover {
+  border-color: var(--color-bg-primary) !important;
+}
+
+.service-card-active {
+  border-color: var(--color-bg-primary) !important;
+  border-width: 2px !important;
+}
+
+/* Link Colors */
+.link-primary {
+  color: var(--color-text-primary) !important;
+}
+
+.link-primary:hover {
+  color: var(--color-text-primary-dark) !important;
+}
+
+/* Form Elements */
+.input-primary {
+  border-color: rgba(152, 193, 217, 0.3) !important;
+}
+
+.input-primary:focus {
+  border-color: var(--color-text-primary) !important;
+  --tw-ring-color: var(--color-text-primary) !important;
+  box-shadow: 0 0 0 2px var(--color-text-primary) !important;
+}
+
+/* Badge/Tag Colors */
+.badge-primary {
+  background-color: var(--color-bg-primary-light) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Progress Bar */
+.progress-bar-bg {
+  background-color: rgba(152, 193, 217, 0.2) !important;
+}
+
+/* Highlight Cards */
+.highlight-card {
+  background: linear-gradient(to bottom right, var(--color-bg-primary-light), white) !important;
+  border-color: rgba(152, 193, 217, 0.2) !important;
+}
+
+.mission-card {
+  background: linear-gradient(to right, var(--color-text-primary), var(--color-text-primary-dark)) !important;
+  color: white !important;
+}
+
+/* Filter Buttons */
+.filter-btn {
+  background-color: white !important;
+  color: var(--color-text-primary) !important;
+  border-color: rgba(152, 193, 217, 0.3) !important;
+}
+
+.filter-btn:hover {
+  background-color: var(--color-bg-primary-light) !important;
+  border-color: var(--color-text-primary) !important;
+}
+
+.filter-btn-active {
+  background: linear-gradient(to right, var(--color-text-primary), var(--color-text-primary-dark)) !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary-light) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-primary) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-primary-dark) !important;
+}
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Carousel scroll snap */
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
 }
 

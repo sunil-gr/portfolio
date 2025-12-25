@@ -32,12 +32,12 @@ const About = () => {
   // Show error/empty state if no data
   if (!loading && (error || !aboutContent)) {
     return (
-      <section id="about" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+      <section id="about" className="py-20 sm:py-24 md:py-28 lg:py-36 section-bg-gradient relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center py-16">
-            <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-700 mb-2">About Section Not Available</h2>
-            <p className="text-gray-500">Content is being loaded from the database. Please check back later.</p>
+            <AlertCircle className="w-16 h-16 text-body-light mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-primary mb-2">About Section Not Available</h2>
+            <p className="text-body-light">Content is being loaded from the database. Please check back later.</p>
           </div>
         </div>
       </section>
@@ -45,10 +45,10 @@ const About = () => {
   }
 
   return (
-    <section id="about" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section id="about" className="py-20 sm:py-24 md:py-28 lg:py-36 section-bg-gradient relative overflow-hidden">
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 orb-primary opacity-20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 orb-primary opacity-20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -58,7 +58,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-section-title mb-6">
             About Me
           </h2>
         </motion.div>
@@ -69,7 +69,7 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-blue-200/50"
+            className="card-bg-light rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-primary-light"
           >
             {loading ? (
               <div className="space-y-4">
@@ -82,7 +82,7 @@ const About = () => {
               </div>
             ) : (
               <>
-                <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-left sm:text-justify mb-6">
+                <p className="text-body-light text-sm sm:text-base md:text-lg leading-relaxed text-left sm:text-justify mb-6">
                   {aboutContent?.description || ''}
                 </p>
 
@@ -95,11 +95,11 @@ const About = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-gradient-to-br from-blue-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="highlight-card rounded-xl sm:rounded-2xl p-4 sm:p-5 border shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{item.value || ''}</p>
-                  <p className="text-gray-800 font-semibold mt-1 text-sm sm:text-base">{item.label || ''}</p>
-                  <p className="text-gray-600 text-xs sm:text-sm mt-2">{item.detail || ''}</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-primary">{item.value || ''}</p>
+                  <p className="text-primary font-semibold mt-1 text-sm sm:text-base">{item.label || ''}</p>
+                  <p className="text-body-light text-xs sm:text-sm mt-2">{item.detail || ''}</p>
                 </motion.div>
               ))}
               <motion.div 
@@ -108,7 +108,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
                 whileHover={{ scale: 1.02 }}
-                className="sm:col-span-2 rounded-xl sm:rounded-2xl p-4 sm:p-5 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="sm:col-span-2 rounded-xl sm:rounded-2xl p-4 sm:p-5 mission-card shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <p className="uppercase tracking-widest text-xs font-semibold opacity-90 mb-2">Mission</p>
                 <p className="text-base sm:text-lg font-semibold leading-relaxed">
@@ -126,9 +126,9 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-gray-200/50"
+            className="card-bg-light rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-primary-light"
           >
-            <h3 className="text-xl sm:text-2xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6 sm:mb-8">Core Skills</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold text-section-title mb-6 sm:mb-8">Core Skills</h3>
             {loading ? (
               <div className="space-y-8">
                 {[1, 2, 3, 4, 5, 6].map(i => (
@@ -146,10 +146,10 @@ const About = () => {
                   transition={{ delay: index * 0.1 }}
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-800 font-semibold">{skill.name}</span>
-                    <span className="text-gray-500 text-sm">{skill.progress}%</span>
+                    <span className="text-primary font-semibold">{skill.name}</span>
+                    <span className="text-body-light text-sm">{skill.progress}%</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3 sm:h-4 overflow-hidden shadow-inner">
+                  <div className="w-full progress-bar-bg rounded-full h-3 sm:h-4 overflow-hidden shadow-inner">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.progress}%` }}

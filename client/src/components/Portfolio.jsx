@@ -65,7 +65,7 @@ const Portfolio = () => {
   }, [fetchProjects]);
 
   return (
-    <section id="portfolio" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-white via-gray-50 to-blue-50/50 relative overflow-hidden">
+    <section id="portfolio" className="py-20 sm:py-24 md:py-28 lg:py-36 section-bg-gradient-light relative overflow-hidden">
       {/* Geometric Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -81,8 +81,8 @@ const Portfolio = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-6 px-4 drop-shadow-lg">My Portfolio</h2>
-          <p className="text-gray-700 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 leading-relaxed font-medium">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-section-title mb-6 px-4 drop-shadow-lg">My Portfolio</h2>
+          <p className="text-section-subtitle text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 leading-relaxed font-medium">
             Explore a collection of my design projects, each crafted to deliver seamless,
             user-centered experiences.
           </p>
@@ -101,8 +101,8 @@ const Portfolio = () => {
               onClick={() => setActiveFilter(filter)}
               className={`px-5 sm:px-7 py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base transform hover:scale-105 ${
                 activeFilter === filter
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg scale-105'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-md hover:shadow-lg'
+                  ? 'filter-btn-active shadow-lg scale-105'
+                  : 'filter-btn shadow-md hover:shadow-lg'
               }`}
             >
               {filter}
@@ -113,18 +113,18 @@ const Portfolio = () => {
         {/* Portfolio Grid */}
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-gray-600">Loading projects...</p>
+            <p className="text-body-light">Loading projects...</p>
           </div>
         ) : error ? (
           <div className="text-center py-12">
-            <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 text-lg font-semibold mb-2">Portfolio Section Not Available</p>
-            <p className="text-gray-500 text-sm">Content is being loaded from the database. Please check back later.</p>
+            <AlertCircle className="w-16 h-16 text-body-light mx-auto mb-4" />
+            <p className="text-primary text-lg font-semibold mb-2">Portfolio Section Not Available</p>
+            <p className="text-body-light text-sm">Content is being loaded from the database. Please check back later.</p>
           </div>
         ) : projects.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">No projects found in this category.</p>
-            <p className="text-gray-500 text-sm mt-2">
+            <p className="text-primary text-lg">No projects found in this category.</p>
+            <p className="text-body-light text-sm mt-2">
               {`No ${activeFilter} projects available. Try selecting a different category.`}
             </p>
           </div>
@@ -150,31 +150,31 @@ const Portfolio = () => {
                     {isAppDesign ? (
                       // Modern Mobile Phone Frame for App Design
                       <div className="relative w-full max-w-[300px] mx-auto">
-                        {/* Phone Frame with Modern Design */}
-                        <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-[3.5rem] p-2.5 sm:p-3 shadow-2xl ring-4 ring-gray-800/50">
+                        {/* Phone Frame with Modern Design - Using base color scheme */}
+                        <div className="relative bg-gradient-to-br from-[#98C1d9] via-[#7BA8C4] to-[#293241] rounded-[3.5rem] p-2.5 sm:p-3 shadow-2xl ring-4 ring-[#98C1d9]/30">
                           {/* Dynamic Island / Notch - Modern Design */}
-                          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-7 bg-black rounded-full z-10 flex items-center justify-center">
-                            <div className="w-20 h-5 bg-gray-900 rounded-full"></div>
+                          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-7 bg-[#293241] rounded-full z-10 flex items-center justify-center shadow-lg">
+                            <div className="w-20 h-5 bg-[#1F2530] rounded-full"></div>
                           </div>
                           
                           {/* Screen with Bezel */}
-                          <div className="relative bg-black rounded-[3rem] overflow-hidden">
+                          <div className="relative bg-[#293241] rounded-[3rem] overflow-hidden shadow-inner">
                             {/* Modern Status Bar */}
-                            <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-gray-900 via-gray-800 to-transparent z-20 flex items-center justify-between px-5 pt-1 text-white">
+                            <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#293241] via-[#1F2530] to-transparent z-20 flex items-center justify-between px-5 pt-1 text-[#E0FBFC]">
                               <span className="text-xs font-semibold">9:41</span>
                               <div className="flex items-center gap-1.5">
                                 <svg className="w-4 h-3" viewBox="0 0 20 12" fill="none">
-                                  <rect x="0" y="4" width="16" height="4" rx="1" fill="white" opacity="0.8"/>
-                                  <path d="M16 0 L20 4 L16 8 Z" fill="white" opacity="0.8"/>
+                                  <rect x="0" y="4" width="16" height="4" rx="1" fill="#E0FBFC" opacity="0.9"/>
+                                  <path d="M16 0 L20 4 L16 8 Z" fill="#E0FBFC" opacity="0.9"/>
                                 </svg>
-                                <div className="w-6 h-3 border-2 border-white rounded-sm">
-                                  <div className="w-full h-full bg-white rounded-sm" style={{width: '75%'}}></div>
+                                <div className="w-6 h-3 border-2 border-[#E0FBFC] rounded-sm">
+                                  <div className="w-full h-full bg-[#E0FBFC] rounded-sm" style={{width: '75%'}}></div>
                                 </div>
                               </div>
                             </div>
                             
                             {/* App Content with Modern Look */}
-                            <div className="relative h-[420px] sm:h-[520px] overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+                            <div className="relative h-[420px] sm:h-[520px] overflow-hidden bg-gradient-to-br from-[#E0FBFC] via-[#98C1d9] to-[#E0FBFC]">
                               <img
                                 src={project.image || 'https://via.placeholder.com/400x300'}
                                 alt={project.title}
@@ -188,44 +188,44 @@ const Portfolio = () => {
                                 loading="lazy"
                               />
                               {/* Modern Overlay on hover */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/95 via-blue-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#293241]/95 via-[#293241]/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
                                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex space-x-4 transform translate-y-6 group-hover:translate-y-0">
                                   <motion.div 
                                     whileHover={{ scale: 1.3, rotate: 10 }}
-                                    className="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-2xl border border-white/20">
-                                    <ZoomIn className="text-blue-600" size={22} />
+                                    className="bg-[#E0FBFC]/95 backdrop-blur-md p-3.5 rounded-2xl shadow-2xl border border-[#E0FBFC]/20">
+                                    <ZoomIn className="text-primary" size={22} />
                                   </motion.div>
                                   <motion.div 
                                     whileHover={{ scale: 1.3, rotate: -10 }}
-                                    className="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-2xl border border-white/20">
-                                    <ExternalLink className="text-blue-600" size={22} />
+                                    className="bg-[#E0FBFC]/95 backdrop-blur-md p-3.5 rounded-2xl shadow-2xl border border-[#E0FBFC]/20">
+                                    <ExternalLink className="text-primary" size={22} />
                                   </motion.div>
                                 </div>
                               </div>
                             </div>
                             
                             {/* Modern Home Indicator */}
-                            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-36 h-1.5 bg-white/30 backdrop-blur-sm rounded-full z-20 border border-white/20"></div>
+                            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-36 h-1.5 bg-[#E0FBFC]/40 backdrop-blur-sm rounded-full z-20 border border-[#E0FBFC]/30"></div>
                           </div>
                           
-                          {/* Side Buttons (Volume, Power) */}
-                          <div className="absolute left-0 top-20 w-1 h-12 bg-gray-700/50 rounded-r-full"></div>
-                          <div className="absolute left-0 top-36 w-1 h-8 bg-gray-700/50 rounded-r-full"></div>
-                          <div className="absolute right-0 top-24 w-1 h-10 bg-gray-700/50 rounded-l-full"></div>
+                          {/* Side Buttons (Volume, Power) - Lighter design */}
+                          <div className="absolute left-0 top-20 w-1 h-12 bg-[#293241]/40 rounded-r-full"></div>
+                          <div className="absolute left-0 top-36 w-1 h-8 bg-[#293241]/40 rounded-r-full"></div>
+                          <div className="absolute right-0 top-24 w-1 h-10 bg-[#293241]/40 rounded-l-full"></div>
                         </div>
                         
                         {/* Project Info Below Phone with Modern Styling */}
                         <div className="mt-5 text-center px-2">
-                          <span className="inline-block text-blue-600 text-xs sm:text-sm uppercase tracking-wider font-bold mb-2 px-3 py-1 bg-blue-50 rounded-full">
+                          <span className="inline-block link-primary text-xs sm:text-sm uppercase tracking-wider font-bold mb-2 px-3 py-1 badge-primary rounded-full">
                             {project.category}
                           </span>
-                          <h3 className="text-gray-800 text-base sm:text-lg font-bold mt-2 line-clamp-2 leading-tight">{project.title}</h3>
+                          <h3 className="text-primary text-base sm:text-lg font-bold mt-2 line-clamp-2 leading-tight">{project.title}</h3>
                         </div>
                       </div>
                     ) : (
                       // Regular Card for Website Design
-                      <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl w-full border border-gray-200">
-                        <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                      <div className="card-bg rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl w-full border border-primary-light">
+                        <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden bg-gradient-to-br from-[rgba(152,193,217,0.1)] to-[rgba(152,193,217,0.2)]">
                           <img
                             src={project.image || 'https://via.placeholder.com/400x300'}
                             alt={project.title}
@@ -238,26 +238,26 @@ const Portfolio = () => {
                             }}
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-blue-600/90 via-blue-500/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                          <div className="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-90 transition-all duration-300 flex items-center justify-center">
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-4 transform translate-y-4 group-hover:translate-y-0">
                               <motion.div 
                                 whileHover={{ scale: 1.2, rotate: 5 }}
                                 className="bg-white p-3 rounded-full shadow-xl">
-                                <ZoomIn className="text-blue-600" size={24} />
+                                <ZoomIn className="text-primary" size={24} />
                               </motion.div>
                               <motion.div 
                                 whileHover={{ scale: 1.2, rotate: -5 }}
                                 className="bg-white p-3 rounded-full shadow-xl">
-                                <ExternalLink className="text-blue-600" size={24} />
+                                <ExternalLink className="text-primary" size={24} />
                               </motion.div>
                             </div>
                           </div>
                         </div>
                         <div className="p-4 sm:p-5 md:p-6">
-                          <span className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide font-semibold">
+                          <span className="link-primary text-xs sm:text-sm uppercase tracking-wide font-semibold">
                             {project.category || 'Design'}
                           </span>
-                          <h3 className="text-gray-800 text-base sm:text-lg md:text-xl font-bold mt-2 line-clamp-2 leading-tight">{project.title}</h3>
+                          <h3 className="text-primary text-base sm:text-lg md:text-xl font-bold mt-2 line-clamp-2 leading-tight">{project.title}</h3>
                         </div>
                       </div>
                     )}
@@ -298,33 +298,33 @@ const Portfolio = () => {
                   
                   {selectedProject.category === 'App Design' ? (
                     // Modern Mobile Phone Frame in Modal for App Design
-                    <div className="flex flex-col items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+                    <div className="flex flex-col items-center justify-center p-6 sm:p-8 section-bg-gradient">
                       <div className="relative w-full max-w-[380px] mx-auto">
-                        {/* Modern Phone Frame */}
-                        <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-[4rem] p-3 sm:p-4 shadow-2xl ring-4 ring-gray-800/50">
+                        {/* Modern Phone Frame - Using base color scheme */}
+                        <div className="relative bg-gradient-to-br from-[#98C1d9] via-[#7BA8C4] to-[#293241] rounded-[4rem] p-3 sm:p-4 shadow-2xl ring-4 ring-[#98C1d9]/30">
                           {/* Modern Dynamic Island / Notch */}
-                          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-black rounded-full z-10 flex items-center justify-center shadow-lg">
-                            <div className="w-24 h-6 bg-gray-900 rounded-full"></div>
+                          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-[#293241] rounded-full z-10 flex items-center justify-center shadow-lg">
+                            <div className="w-24 h-6 bg-[#1F2530] rounded-full"></div>
                           </div>
                           
                           {/* Screen with Modern Bezel */}
-                          <div className="relative bg-black rounded-[3.5rem] overflow-hidden">
+                          <div className="relative bg-[#293241] rounded-[3.5rem] overflow-hidden shadow-inner">
                             {/* Modern Status Bar */}
-                            <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-gray-900 via-gray-800 to-transparent z-20 flex items-center justify-between px-6 pt-2 text-white">
+                            <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#293241] via-[#1F2530] to-transparent z-20 flex items-center justify-between px-6 pt-2 text-[#E0FBFC]">
                               <span className="text-sm font-semibold">9:41</span>
                               <div className="flex items-center gap-2">
                                 <svg className="w-5 h-3.5" viewBox="0 0 20 12" fill="none">
-                                  <rect x="0" y="4" width="16" height="4" rx="1" fill="white" opacity="0.9"/>
-                                  <path d="M16 0 L20 4 L16 8 Z" fill="white" opacity="0.9"/>
+                                  <rect x="0" y="4" width="16" height="4" rx="1" fill="#E0FBFC" opacity="0.9"/>
+                                  <path d="M16 0 L20 4 L16 8 Z" fill="#E0FBFC" opacity="0.9"/>
                                 </svg>
-                                <div className="w-7 h-3.5 border-2 border-white rounded-sm">
-                                  <div className="w-full h-full bg-white rounded-sm" style={{width: '80%'}}></div>
+                                <div className="w-7 h-3.5 border-2 border-[#E0FBFC] rounded-sm">
+                                  <div className="w-full h-full bg-[#E0FBFC] rounded-sm" style={{width: '80%'}}></div>
                                 </div>
                               </div>
                             </div>
                             
                             {/* App Content */}
-                            <div className="relative h-[650px] sm:h-[750px] overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+                            <div className="relative h-[650px] sm:h-[750px] overflow-hidden bg-gradient-to-br from-[#E0FBFC] via-[#98C1d9] to-[#E0FBFC]">
                               <img
                                 src={normalizeImageUrl(selectedProject.image) || 'https://via.placeholder.com/400x300'}
                                 alt={selectedProject.title}
@@ -339,36 +339,36 @@ const Portfolio = () => {
                             </div>
                             
                             {/* Modern Home Indicator */}
-                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-2 bg-white/30 backdrop-blur-sm rounded-full z-20 border border-white/20"></div>
+                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-2 bg-[#E0FBFC]/40 backdrop-blur-sm rounded-full z-20 border border-[#E0FBFC]/30"></div>
                           </div>
                           
-                          {/* Side Buttons (Volume, Power) */}
-                          <div className="absolute left-0 top-24 w-1.5 h-14 bg-gray-700/50 rounded-r-full"></div>
-                          <div className="absolute left-0 top-44 w-1.5 h-10 bg-gray-700/50 rounded-r-full"></div>
-                          <div className="absolute right-0 top-28 w-1.5 h-12 bg-gray-700/50 rounded-l-full"></div>
+                          {/* Side Buttons (Volume, Power) - Lighter design */}
+                          <div className="absolute left-0 top-24 w-1.5 h-14 bg-[#293241]/40 rounded-r-full"></div>
+                          <div className="absolute left-0 top-44 w-1.5 h-10 bg-[#293241]/40 rounded-r-full"></div>
+                          <div className="absolute right-0 top-28 w-1.5 h-12 bg-[#293241]/40 rounded-l-full"></div>
                         </div>
                       </div>
                       
                       {/* Project Details Below Phone */}
                       <div className="mt-6 w-full max-w-2xl">
-                        <span className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide font-semibold">
+                        <span className="link-primary text-xs sm:text-sm uppercase tracking-wide font-semibold">
                           {selectedProject.category}
                         </span>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mt-2 mb-4">
                           {selectedProject.title}
                         </h2>
-                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
+                        <p className="text-body-light text-sm sm:text-base leading-relaxed mb-6">
                           {selectedProject.description ||
                             'This is a detailed description of the app design project. It showcases the design process, user experience considerations, and mobile-specific solutions implemented.'}
                         </p>
                         {selectedProject.technologies && selectedProject.technologies.length > 0 && (
                           <div className="mb-6">
-                            <h3 className="text-base sm:text-lg font-semibold mb-3">Technologies:</h3>
+                            <h3 className="text-base sm:text-lg font-semibold text-primary mb-3">Technologies:</h3>
                             <div className="flex flex-wrap gap-2">
                               {selectedProject.technologies.map((tech, index) => (
                                 <span
                                   key={index}
-                                  className="bg-blue-100 text-blue-700 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium"
+                                  className="badge-primary px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium"
                                 >
                                   {tech}
                                 </span>
@@ -382,7 +382,7 @@ const Portfolio = () => {
                               href={selectedProject.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center text-sm sm:text-base font-medium shadow-lg hover:shadow-xl"
+                              className="btn-primary px-6 sm:px-8 py-3 rounded-lg transition-colors text-center text-sm sm:text-base font-medium shadow-lg hover:shadow-xl"
                             >
                               View Live App
                             </a>
@@ -392,7 +392,7 @@ const Portfolio = () => {
                               href={selectedProject.githubUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="bg-gray-200 text-gray-700 px-6 sm:px-8 py-3 rounded-lg hover:bg-gray-300 transition-colors text-center text-sm sm:text-base font-medium shadow-lg hover:shadow-xl"
+                              className="btn-secondary px-6 sm:px-8 py-3 rounded-lg transition-colors text-center text-sm sm:text-base font-medium shadow-lg hover:shadow-xl"
                             >
                               View Code
                             </a>

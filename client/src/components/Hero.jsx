@@ -181,11 +181,11 @@ const Hero = () => {
   if (!loading && (error || !heroContent)) {
     return (
       <section id="home" className="hero-section-height relative overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-blue-50/80 to-indigo-50"></div>
+        <div className="absolute inset-0 section-bg-gradient"></div>
         <div className="relative z-10 text-center px-4">
-          <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-700 mb-2">Hero Section Not Available</h2>
-          <p className="text-gray-500">Content is being loaded from the database. Please check back later.</p>
+          <AlertCircle className="w-16 h-16 text-body-light mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-primary mb-2">Hero Section Not Available</h2>
+          <p className="text-body-light">Content is being loaded from the database. Please check back later.</p>
         </div>
       </section>
     );
@@ -194,7 +194,7 @@ const Hero = () => {
   return (
     <section id="home" className="hero-section-height relative overflow-hidden">
       {/* Light Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-blue-50/80 to-indigo-50"></div>
+      <div className="absolute inset-0 section-bg-gradient"></div>
       <div 
         className="absolute inset-0 opacity-30"
         style={{
@@ -214,7 +214,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-20 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40"
+        className="absolute top-20 right-10 w-72 h-72 orb-primary rounded-full mix-blend-multiply filter blur-3xl opacity-40"
       />
       <motion.div
         animate={{
@@ -228,7 +228,7 @@ const Hero = () => {
           ease: "easeInOut",
           delay: 0.5
         }}
-        className="absolute bottom-20 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40"
+        className="absolute bottom-20 left-10 w-96 h-96 orb-primary rounded-full mix-blend-multiply filter blur-3xl opacity-40"
       />
       <motion.div
         animate={{
@@ -242,7 +242,7 @@ const Hero = () => {
           ease: "easeInOut",
           delay: 1
         }}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-35"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 orb-primary rounded-full mix-blend-multiply filter blur-3xl opacity-35"
       />
 
       {/* Content Container */}
@@ -271,7 +271,7 @@ const Hero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-blue-600 text-base sm:text-lg md:text-xl mb-3 font-semibold"
+                  className="text-primary text-base sm:text-lg md:text-xl mb-3 font-semibold"
                 >
                   {heroContent?.greeting || ''}
                 </motion.p>
@@ -279,7 +279,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-2 sm:mb-3 leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-section-title mb-2 sm:mb-3 leading-tight"
                 >
                   {heroContent?.name || ''}
                 </motion.h1>
@@ -288,7 +288,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3 sm:mb-4 leading-tight"
+                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-section-title mb-3 sm:mb-4 leading-tight"
                 >
                   {heroContent?.designation || ''}
                 </motion.h2>
@@ -296,7 +296,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-gray-700 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-left sm:text-justify max-w-xl font-medium"
+                  className="text-section-subtitle text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-left sm:text-justify max-w-xl font-medium"
                 >
                   {heroContent?.description || ''}
                 </motion.p>
@@ -320,12 +320,12 @@ const Hero = () => {
                           whileHover={{ scale: 1.02, x: 5 }}
                           className="flex items-center gap-4 transition-all duration-300 group"
                         >
-                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                            <Phone className="text-blue-600" size={18} />
+                          <div className="flex-shrink-0 w-10 h-10 icon-container-inactive rounded-lg flex items-center justify-center transition-colors">
+                            <Phone className="text-primary" size={18} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Phone</p>
-                            <p className="text-gray-800 font-semibold text-sm sm:text-base">{heroContent.phone}</p>
+                            <p className="text-xs text-body-light font-medium uppercase tracking-wide mb-0.5">Phone</p>
+                            <p className="text-primary font-semibold text-sm sm:text-base">{heroContent.phone}</p>
                           </div>
                         </motion.div>
                       )}
@@ -334,12 +334,12 @@ const Hero = () => {
                           whileHover={{ scale: 1.02, x: 5 }}
                           className="flex items-center gap-4 transition-all duration-300 group"
                         >
-                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                            <Mail className="text-blue-600" size={18} />
+                          <div className="flex-shrink-0 w-10 h-10 icon-container-inactive rounded-lg flex items-center justify-center transition-colors">
+                            <Mail className="text-primary" size={18} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Email</p>
-                            <p className="text-gray-800 font-semibold text-sm sm:text-base truncate">{heroContent.email}</p>
+                            <p className="text-xs text-body-light font-medium uppercase tracking-wide mb-0.5">Email</p>
+                            <p className="text-primary font-semibold text-sm sm:text-base truncate">{heroContent.email}</p>
                           </div>
                         </motion.div>
                       )}
@@ -348,12 +348,12 @@ const Hero = () => {
                           whileHover={{ scale: 1.02, x: 5 }}
                           className="flex items-center gap-4 transition-all duration-300 group"
                         >
-                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                            <MapPin className="text-blue-600" size={18} />
+                          <div className="flex-shrink-0 w-10 h-10 icon-container-inactive rounded-lg flex items-center justify-center transition-colors">
+                            <MapPin className="text-primary" size={18} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">Address</p>
-                            <p className="text-gray-800 font-semibold text-sm sm:text-base">{heroContent.address}</p>
+                            <p className="text-xs text-body-light font-medium uppercase tracking-wide mb-0.5">Address</p>
+                            <p className="text-primary font-semibold text-sm sm:text-base">{heroContent.address}</p>
                           </div>
                         </motion.div>
                       )}
@@ -363,7 +363,7 @@ const Hero = () => {
                   {/* Social Links Column */}
                   {(heroContent.linkedinUrl || heroContent.githubUrl) && (
                     <div className="space-y-2 sm:space-y-3">
-                      <h3 className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2 sm:mb-3">Social Links</h3>
+                      <h3 className="text-xs text-body-light font-medium uppercase tracking-wide mb-2 sm:mb-3">Social Links</h3>
                       {heroContent?.linkedinUrl && (
                         <motion.a
                           href={heroContent.linkedinUrl}
@@ -373,12 +373,12 @@ const Hero = () => {
                           className="flex items-center gap-4 transition-all duration-300 group"
                           aria-label="LinkedIn"
                         >
-                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                            <Linkedin className="text-blue-600" size={18} />
+                          <div className="flex-shrink-0 w-10 h-10 icon-container-inactive rounded-lg flex items-center justify-center transition-colors">
+                            <Linkedin className="text-primary" size={18} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">LinkedIn</p>
-                            <p className="text-gray-800 font-semibold text-sm sm:text-base truncate">Connect with me</p>
+                            <p className="text-xs text-body-light font-medium uppercase tracking-wide mb-0.5">LinkedIn</p>
+                            <p className="text-primary font-semibold text-sm sm:text-base truncate">Connect with me</p>
                           </div>
                         </motion.a>
                       )}
@@ -391,12 +391,12 @@ const Hero = () => {
                           className="flex items-center gap-4 transition-all duration-300 group"
                           aria-label="GitHub"
                         >
-                          <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                            <Github className="text-blue-600" size={18} />
+                          <div className="flex-shrink-0 w-10 h-10 icon-container-inactive rounded-lg flex items-center justify-center transition-colors">
+                            <Github className="text-primary" size={18} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5">GitHub</p>
-                            <p className="text-gray-800 font-semibold text-sm sm:text-base truncate">View my work</p>
+                            <p className="text-xs text-body-light font-medium uppercase tracking-wide mb-0.5">GitHub</p>
+                            <p className="text-primary font-semibold text-sm sm:text-base truncate">View my work</p>
                           </div>
                         </motion.a>
                       )}
@@ -421,7 +421,7 @@ const Hero = () => {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-bold flex items-center justify-center text-sm sm:text-base shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105"
+                className="btn-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-bold flex items-center justify-center text-sm sm:text-base shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105"
               >
                 Let's Talk
                 <svg
@@ -442,11 +442,11 @@ const Hero = () => {
               <button
                 onClick={handleDownloadCV}
                 disabled={downloading}
-                className="bg-white text-gray-700 border-2 border-gray-300 px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300 font-bold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
+                className="btn-secondary px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 font-bold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
               >
                 {downloading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mr-2"></div>
+                    <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
                     Downloading...
                   </>
                 ) : (
@@ -468,8 +468,8 @@ const Hero = () => {
             className="relative z-10 order-1 md:order-2 pr-0"
           >
             <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg ml-auto mr-0">
-              <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-blue-300 blur-3xl opacity-50"></div>
-              <div className="absolute -bottom-6 -left-4 w-20 h-20 rounded-full bg-indigo-300 blur-3xl opacity-50"></div>
+              <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full orb-primary blur-3xl opacity-50"></div>
+              <div className="absolute -bottom-6 -left-4 w-20 h-20 rounded-full orb-primary blur-3xl opacity-50"></div>
               {/* Dynamic Portrait Image - Fetched from Database */}
               {heroContent?.image && heroContent.image.trim() !== '' ? (
                 <motion.div
@@ -504,13 +504,13 @@ const Hero = () => {
                   transition={{ delay: 0.7 }}
                   className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
                 >
-                  <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] bg-gradient-to-br from-blue-100 via-blue-50 to-indigo-100 flex items-center justify-center rounded-xl">
+                  <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] bg-gradient-to-br from-[rgba(224,251,252,0.5)] via-[rgba(152,193,217,0.3)] to-[rgba(224,251,252,0.5)] flex items-center justify-center rounded-xl">
                     <div className="text-center px-6">
-                      <div className="w-28 h-28 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
+                      <div className="w-28 h-28 gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
                         <span className="text-4xl">👨‍💼</span>
                       </div>
-                      <p className="text-gray-700 font-semibold">Portrait Image</p>
-                      <p className="text-gray-500 text-sm mt-2">
+                      <p className="text-primary font-semibold">Portrait Image</p>
+                      <p className="text-body-light text-sm mt-2">
                         Upload an image in the admin panel
                       </p>
                     </div>

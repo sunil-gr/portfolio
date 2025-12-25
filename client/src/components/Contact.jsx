@@ -42,10 +42,10 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 md:py-28 lg:py-36 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-blue-50 relative overflow-hidden">
+    <section id="contact" className="py-20 sm:py-24 md:py-28 lg:py-36 section-bg-gradient-alt relative overflow-hidden">
       {/* Decorative Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-200/30 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-1/4 w-96 h-96 orb-primary opacity-30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 orb-primary opacity-30 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -55,8 +55,8 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-6 px-4 drop-shadow-lg">Get In Touch</h2>
-          <p className="text-gray-700 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 leading-relaxed font-medium">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-section-title mb-6 px-4 drop-shadow-lg">Get In Touch</h2>
+          <p className="text-section-subtitle text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 leading-relaxed font-medium">
             Have a project in mind? Let's work together to bring your ideas to life.
           </p>
         </motion.div>
@@ -68,10 +68,10 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="max-w-2xl mx-auto"
         >
-          <form onSubmit={handleSubmit} className="bg-white/95 backdrop-blur-sm p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl shadow-2xl border border-blue-200/50">
+          <form onSubmit={handleSubmit} className="card-bg-light p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl shadow-2xl border border-primary-light">
             <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
               <div>
-                <label htmlFor="name" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+                <label htmlFor="name" className="block text-primary font-medium mb-2 text-sm sm:text-base">
                   Name
                 </label>
                 <input
@@ -81,12 +81,12 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
                   placeholder="Your Name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+                <label htmlFor="email" className="block text-primary font-medium mb-2 text-sm sm:text-base">
                   Email
                 </label>
                 <input
@@ -96,14 +96,14 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
                   placeholder="your.email@example.com"
                 />
               </div>
             </div>
 
             <div className="mb-6 sm:mb-8">
-              <label htmlFor="subject" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+              <label htmlFor="subject" className="block text-primary font-medium mb-2 text-sm sm:text-base">
                 Subject
               </label>
               <input
@@ -113,13 +113,13 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm sm:text-base"
                 placeholder="Project Inquiry"
               />
             </div>
 
             <div className="mb-6 sm:mb-8">
-              <label htmlFor="message" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+              <label htmlFor="message" className="block text-primary font-medium mb-2 text-sm sm:text-base">
                 Message
               </label>
               <textarea
@@ -129,7 +129,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows="5"
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 input-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none text-sm sm:text-base"
                 placeholder="Tell me about your project..."
               ></textarea>
             </div>
@@ -137,7 +137,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
+              className="w-full btn-primary px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl transition-all duration-300 font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
             >
               {loading ? (
                 <>
